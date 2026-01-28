@@ -1,4 +1,5 @@
 #include<stdio.h>
+#include<string.h>
 
 void inc(int x)
 {
@@ -27,21 +28,54 @@ int main3()
     printf("%d\n", x);
 }
 
+int mystrlen_while(char* str)
+{   
+    int len=0;
+    while(*str) len++;
+    return len;
+}
+
+void str_append(char* str, char* str2)
+{
+    while(*str) str++;
+
+    while(*str2)
+    {
+        *str = *str2;
+        str++;
+        str2++;
+    }
+    *str = 0;
+}
+
+int main()
+{
+    char str[20] = "John";
+    char str2[10] = "Amy";
+    int n = strnlen()
+
+    str_append(str, str2);
+    printf("%s\n", str);
+}
+
 int mystrlen(char* str)
 {   
     int i=0; 
     for(; str[i] != 0; i++)
         ;
-    
+    return i;
 }
 
-int main()
+int main_demolen()
 {
     // int x;
-    char buf[255];
-    scanf("%s", buf);
+    while(1)
+    {
+        char buf[255];
+        scanf("%s", buf);
+        printf("\n%s %d\n", buf, mystrlen(buf));
+    }    
     // x++;
     // scanf("%d", &x);
-    printf("\n%s %s\n", buf, buf);
     return 0;
 }
