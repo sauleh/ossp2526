@@ -52,8 +52,6 @@ int main()
 {
     char str[20] = "John";
     char str2[10] = "Amy";
-    int n = strnlen()
-
     str_append(str, str2);
     printf("%s\n", str);
 }
