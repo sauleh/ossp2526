@@ -1,5 +1,85 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<windows.h>
+
+typedef struct _Student
+{
+    int student_id;
+    char name[20];
+    int national_id;
+    double GPA;
+} Student;
+
+Student* make_student(int id, char* buf, int natid, double gpa)
+{
+    Student* ps = malloc(sizeof(Student));
+    ps->student_id = id;
+    ps->national_id = natid;
+    ps->GPA = gpa;
+
+    int i=0;
+    while(buf[i])
+    {
+        ps->name[i] = buf[i];
+        i++;
+    }
+    ps->name[i] = 0;
+    return ps;
+}
+
+int main()
+{
+    
+
+    Student Mary = {
+        .student_id = 0x11223344,
+        .name = "Mary AAAAAAA",
+        .national_id = 0xaaaaaaaa,
+        .GPA = 99.99
+    };
+    printf("%x, %s, %x, %lf", Mary.student_id, Mary.name, Mary.national_id, Mary.GPA);
+}
+
+int main_pointer_cast()
+{
+    unsigned long long int n = 0x11223344AABBCCDD;
+    unsigned char * pch = (char*) &n;
+    for(int i=0; i<8; i++)
+        printf("%x\n", pch[i]);
+}
+
+
+int main_do()
+{
+    unsigned long long int n = 0x11223344AABBCCDD;
+    for(int i = 0; i<8; i++)
+    {
+        unsigned char b = n & 0x00000000ff;
+        printf("%x\n", b);
+        n = n >> 8;
+    }
+}
+
+int main_memory_leak()
+{
+    long long sum = 0;
+    for(int i=0; i<1000*1000; i++)    
+    {
+        int* nums = malloc(100*1000);
+        sum += nums[1000];
+        Sleep(100);
+        printf("\r%d", i);
+    }
+    printf("%d\n", sum);
+}
+
+
+
+
+
+
+
+
 
 void print_jaggedarray(char** buf, int size)
 {
@@ -15,7 +95,7 @@ void print_jagged_array_int(int ** nums, int* nums_sizes, int size)
         printf("\n");
     }
 }
-int main()
+int main_jaagged_array_int()
 {
     int nums1[5] = {0x11, 0x00, 0x13, 0x14, 0x015};
     int nums2[2] = {0x21, 0x22};
